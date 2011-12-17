@@ -44,5 +44,11 @@ module Nile
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |generator|
+      generator.test_framework :rspec, :views => false, :fixture => true
+      generator.fixture_replacement :factory_girl, :dir => "spec/factories"
+      generator.template_engine :haml
+    end
   end
 end
