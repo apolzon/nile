@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20111217042346) do
 
   create_table "stories", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.string   "tags"
     t.string   "state"
     t.string   "owner"

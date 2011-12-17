@@ -2,7 +2,7 @@ class CreateStories < ActiveRecord::Migration
   def change
     create_table :stories do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.string :tags
       t.string :state
       t.string :owner
