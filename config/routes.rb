@@ -1,4 +1,8 @@
 Nile::Application.routes.draw do
+  resources :comments
+
+  resources :users
+
   resources :stories
 
   # The priority is based upon order of creation:
