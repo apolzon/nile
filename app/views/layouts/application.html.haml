@@ -7,7 +7,7 @@
 %body
   #header
     - if current_user
-      = link_to "Log out", "sessions/destroy", :method => :delete
+      = link_to "Log out", "sessions/destroy", method: :delete
   #notice
     = flash[:notice]
 

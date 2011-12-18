@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if authenticated? user
       session[:user_id] = user.id
-      redirect_to stories_url, :notice => "Logged in successfully"
+      redirect_to stories_url, notice: "Logged in successfully"
     else
       flash.now.alert = "Invalid email/password combination"
       render :new
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to new_session_url, :notice => "Logged out successfully"
+    redirect_to new_session_url, notice: "Logged out successfully"
   end
 
   private

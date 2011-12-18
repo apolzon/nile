@@ -13,7 +13,7 @@ describe CommentsController do
 
   describe "GET show" do
     it "assigns the requested comment as @comment" do
-      get :show, :id => comment.id
+      get :show, id: comment.id
       assigns(:comment).should == comment
     end
   end
@@ -27,7 +27,7 @@ describe CommentsController do
 
   describe "GET edit" do
     it "assigns the requested comment as @comment" do
-      get :edit, :id => comment.id
+      get :edit, id: comment.id
       assigns(:comment).should == comment
     end
   end
@@ -36,18 +36,18 @@ describe CommentsController do
     describe "with valid params" do
       it "creates a new Comment" do
         expect {
-          post :create, :comment => {author: "hi", body: "bobby batty bob"}
+          post :create, comment: {author: "hi", body: "bobby batty bob"}
         }.to change(Comment, :count).by(1)
       end
 
       it "assigns a newly created comment as @comment" do
-        post :create, :comment => {author: "pee wee herman", body: "very very pale"}
+        post :create, comment: {author: "pee wee herman", body: "very very pale"}
         assigns(:comment).should be_a(Comment)
         assigns(:comment).should be_persisted
       end
 
       it "redirects to the created comment" do
-        post :create, :comment => {author: "rock on pearson", body: "rockin', dude"}
+        post :create, comment: {author: "rock on pearson", body: "rockin', dude"}
         response.should redirect_to(Comment.last)
       end
     end
@@ -55,13 +55,13 @@ describe CommentsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved comment as @comment" do
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, :comment => {}
+        post :create, comment: {}
         assigns(:comment).should be_a_new(Comment)
       end
 
       it "re-renders the 'new' template" do
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, :comment => {}
+        post :create, comment: {}
         response.should render_template("new")
       end
     end
@@ -70,17 +70,17 @@ describe CommentsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested comment" do
-        Comment.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => comment.id, :comment => {'these' => 'params'}
+        Comment.any_instance.should_receive(:update_attributes).with({these: "params"})
+        put :update, id: comment.id, comment: {these: "params"}
       end
 
       it "assigns the requested comment as @comment" do
-        put :update, :id => comment.id, :comment => {}
+        put :update, id: comment.id, comment: {}
         assigns(:comment).should eq(comment)
       end
 
       it "redirects to the comment" do
-        put :update, :id => comment.id, :comment => {}
+        put :update, id: comment.id, comment: {}
         response.should redirect_to(comment)
       end
     end
@@ -88,13 +88,13 @@ describe CommentsController do
     describe "with invalid params" do
       it "assigns the comment as @comment" do
         Comment.any_instance.stub(:save).and_return(false)
-        put :update, :id => comment.id, :comment => {}
+        put :update, id: comment.id, comment: {}
         assigns(:comment).should eq(comment)
       end
 
       it "re-renders the 'edit' template" do
         Comment.any_instance.stub(:save).and_return(false)
-        put :update, :id => comment.id, :comment => {}
+        put :update, id: comment.id, comment: {}
         response.should render_template("edit")
       end
     end
@@ -103,12 +103,12 @@ describe CommentsController do
   describe "DELETE destroy" do
     it "destroys the requested comment" do
       expect {
-        delete :destroy, :id => comment.id
+        delete :destroy, id: comment.id
       }.to change(Comment, :count).by(-1)
     end
 
     it "redirects to the comments list" do
-      delete :destroy, :id => comment.id
+      delete :destroy, id: comment.id
       response.should redirect_to(comments_url)
     end
   end
