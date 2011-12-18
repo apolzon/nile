@@ -11,9 +11,16 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'capybara/rspec'
   require 'capybara/rails'
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+  # Patch for RubyMine and Spork
+  ruby_mines = Dir["/Applications/RubyMine*.app"]
+  unless ruby_mines.empty?
+    $LOAD_PATH.unshift "#{ruby_mines.first}/rb/testing/patch/bdd/"
+    $LOAD_PATH.unshift "#{ruby_mines.first}/rb/testing/patch/common/"
+  end
 
   RSpec.configure do |config|
     # == Mock Framework
